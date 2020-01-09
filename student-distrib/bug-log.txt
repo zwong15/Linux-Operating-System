@@ -1,0 +1,74 @@
+Checkpoint #1 Bugs:
+
+1). Loading/Using GDT:
+    Had trouble figuring out where to emulate the GDT, so we could not bootup and kept triple faulting. RESOLVED: The team was incorrectly
+    aligning the GDT with the IDT and the placement of it was wrong.
+    TIME: 2 hours
+
+2). Setting IDT Entries in Table:
+    Exceptions were not being properly caught when triggered, specifically the device handlers. RESOLVED: Did not properly notice the definition
+    given in x86 Description header file where a skeleton of an IDT entry was shown.
+    TIME: 1 hours
+
+
+Checkpoint #2:
+
+3). Incorrect RTC Read:
+    Was not properly waiting for another RTC interrupt to occur. RESOLVED: Fixed placement of the flag to be changed when an RTC interrupt has
+    been generated.
+    TIME: 1 hour
+
+4). Not clearing the Screen:
+    Was not able to clear the entire screen using the CTRL + L button combination. RESOLVED: Upon the button combination, we were not properly
+    deleting the edge of the screen/border chracters.
+    Time: 1 hour
+
+5). Screen Scrolling:
+    Not scrolling the window down properly. RESOLVED: Was not fully saving the entire screen
+    Time: 1 hour
+
+6). Filesystem Helper Functions:
+    Did not see filesystem helper functions when creating the filesystem. It worked for this checkpoint. Unable to use with system calls.
+    RESOLVED: Implemented required filesystem helper functions to successfully run system calls.
+    Time: 3 hours
+
+Checkpoint #3:
+
+7). Executing Properly:
+    Was unable to execute the shell properly on bootup. RESOLVED: Was not properly created a process from the PCB structure as well as context
+    switching.
+    Time: 4 hours
+
+8). Halting:
+    Was unable to halt a process as well as prevent the initial shell from halting. RESOLVED: Improperly extracting the parent process ebp and esp
+    after we leave and return.
+    Time: 3 hours
+
+Checkpoint #4:
+
+9). Verylong file error:
+    When trying to read from the file, we were not able to need from the verylargetextwithaverylongname.txt file because it did not end with a NULL
+    character. RESOLVED: Made a conditional statement to check if we read an entire 32 bits and return it.
+    Time: 1 hour
+
+10). User Programs Not Displaying:
+     User programs, like counter, would not be displayed properly onto the screen. The numbers for the counter were not being shown, but the screen
+     made the correct space for them. RESOLVED: adding an STI and CLI around the call to the system call handler.
+     TIME: 2 hours
+
+11). Getting incorrect arguments for getargs system call:
+     Was getting garbage values attached to the argument passed into the getargs system call. RESOLVED: implemented a counter member in the pcb struct
+     to count the argument being collected in execute.
+     Time: 1.5 hours
+
+12). Page Faulting in Vidmap:
+     Page faulted when trying to run fish user program as well as the syserr test case. RESOLVED: improperly mapped the requested memory to an invalid
+     location.
+     Time: 1.5 hours
+
+Checkpoint #5:
+
+13). Page Faulting when using Multiple Terminals
+     Any user program run on the three startup shells would result in a page fault. RESOLVED: We were not properly saving the EBP after the User
+     program ends.
+     Time: 8 hours
